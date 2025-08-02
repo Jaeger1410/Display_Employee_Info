@@ -16,6 +16,12 @@ function calculateTotalSalaries() {
     alert(`Total Salaries: $${totalSalaries}`);
 }
 
+function displayEmployees() {
+    const employeesDisplay = employees.map((employee, index) =>
+        `<p>${employee.id}. ${employee.name} - ${employee.department} - $${employee.salary}</p>`).join('');
+    document.getElementById('employeesDetails').innerHTML = employeesDisplay;   
+}
+
 function displayHREmployees() {
     const hrEmployees = employees.filter(employee => employee.department === 'HR');
     const hrEmployeesDisplay = hrEmployees.map((employee, index) => `<p>${employee.id}.
@@ -25,11 +31,11 @@ function displayHREmployees() {
 
 function findEmployeeById(employeeId) {
     const foundEmployee = employees.find(employee => employee.id === employeeId);
-    const foundEmployeeDisplay = foundEmployee.map((employee, index) => `<p>${foundEmployee.id}.
-        ${foundEmployee.name} - ${foundEmployee.department} - $${foundEmployee.salary}</p>`).join('');
+    //const foundEmployeeDisplay = foundEmployee.map((employee, index) => 
     if (foundEmployee) {
-        
-        document.getElementById('employeesDetails').innerHTML = foundEmployeeDisplay;
+        // Displaying the found employee's details
+        document.getElementById('employeesDetails').innerHTML = `<p>${foundEmployee.id}.
+      ${foundEmployee.name} - ${foundEmployee.department} - $${foundEmployee.salary}</p>`;
     }
     else {
         document.getElementById('employeesDetails').innerHTML = 'no employee has been found with this ID';
@@ -39,7 +45,7 @@ function findEmployeeById(employeeId) {
 function findEmployeeBySpec(employeeSpec) {
     const foundEmployee = employees.find(employee => employee.specialization === employeeSpec);
     if (foundEmployee) {
-        document.getElementById('employeeDetails').innerHTML = `<p>${foundEmployee.id}.
+        document.getElementById('employeesDetails').innerHTML = `<p>${foundEmployee.id}.
         ${foundEmployee.name} - ${foundEmployee.department} - ${foundEmployee.specialization}</p>`;
     }
     else {
